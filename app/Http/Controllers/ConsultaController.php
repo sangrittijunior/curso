@@ -42,10 +42,6 @@ class ConsultaController extends Controller {
 
         $consulta->save();
 
-        
-
-        Session::flash('flash_success', "Cadastro realizado com sucesso!");            
-
         return Redirect::to('/consulta');
 
 
