@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('/consulta', 'App\Http\Controllers\ConsultaController')->middleware(['auth', 'verified']);
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/consulta');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
