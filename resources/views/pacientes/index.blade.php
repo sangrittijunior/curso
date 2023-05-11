@@ -1,4 +1,5 @@
 <style scoped>
+    
     .btn {
         float: right;
         background-color: #0d6efd !important;
@@ -14,7 +15,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Consulta') }}
+            {{ __('Pacientes') }}
         </h2>
     </x-slot>
 
@@ -23,42 +24,54 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <a href="{{ route('consulta.create') }}" type="button" class="btn btn-primary">
-                        <i class="bi bi-calendar2-plus-fill"></i> Novo Agendamento
+                    <a href="{{ route('paciente.create') }}" type="button" class="btn btn-primary">
+                        <i class="bi bi-calendar2-plus-fill"></i> Novo Paciente
                     </a>
 
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Paciente</th>
-                                <th scope="col">Medico</th>
-                                <th scope="col">Problema</th>
-                                <th scope="col">Agendamento</th>
+                                <th scope="col">Nome</th>                        
+                                <th scope="col">CPF</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Sexo</th>
+                                <th scope="col">Peso</th>
+                                <th scope="col">Altura</th>
+                                <th scope="col">Nascimento</th>
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                                @if (count($consultas) > 0)
-                                    @foreach($consultas as $consulta)
+                                @if (count($pacientes) > 0)
+                                    @foreach($pacientes as $paciente)
                                         <tr>
                                             <td>
-                                                {{ $consulta->id}}
+                                                {{ $paciente->id }}
                                             </td>
                                             <td>
-                                                {{ $consulta->paciente_id }}
+                                                {{ $paciente->nome }}
                                             </td>
                                             <td>
-                                                {{ $consulta->medico_id }}
+                                                {{ $paciente->cpf }}
                                             </td>
                                             <td>
-                                                {{ $consulta->problema_id }}
+                                                {{ $paciente->telefone }}
                                             </td>
                                             <td>
-                                                {{ date('d/m/Y', strtotime($consulta->data_hora)) }}
+                                                {{ $paciente->sexo }}
                                             </td>
                                             <td>
-                                                <form method="POST" action="{{ route('consulta.destroy', $consulta->id) }}" accept-charset="UTF-8">
+                                                {{ $paciente->peso }}
+                                            </td>
+                                            <td>
+                                                {{ $paciente->altura }}
+                                            </td>
+                                            <td>
+                                                {{ date('d/m/Y', strtotime($paciente->nascimento)) }}
+                                            </td>
+                                            <td>
+                                                <form method="POST" action="{{ route('paciente.destroy', $paciente->id) }}" accept-charset="UTF-8">
                                                     {!! csrf_field() !!}
                                                     {!! method_field('DELETE') !!}
                                                     <button type="submit" onclick="return confirm('Tem certeza que quer deletar?')"
@@ -69,8 +82,8 @@
                                     @endforeach
                                 @else 
                                     <tr>
-                                        <td colspan="6" style="text-align: center;">
-                                            <b>Nenhuma consulta agendada !</b>
+                                        <td colspan="9" style="text-align: center;">
+                                            <b>Nenhum Paciente cadastrado !</b>
                                         </td>
                                     </tr>
                                 @endif

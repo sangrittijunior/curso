@@ -54,7 +54,7 @@
 
                         <div class="row">
                             <div class="input-group col-md-4">
-                                <label class="input-group-text" for="paciente">Pacientes</label>
+                                <label class="input-group-text" for="paciente">Paciente</label>
                                 <select class="form-select" id="paciente" name="paciente_id">
                                     <option value="">Selecione um Paciente... </option>
                                     @foreach($pacientes as $paciente)

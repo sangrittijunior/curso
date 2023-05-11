@@ -19,10 +19,6 @@ class ConsultaController extends Controller {
         return view ('consultas.index', ['consultas' => $consultas]);
     }
 
-    public function show(){
-
-    }
-
     public function create(){
         $pacientes = Paciente::getAllPacientes();
         $medicos   = Medico::getAllMedicos();
@@ -55,8 +51,12 @@ class ConsultaController extends Controller {
         
     }
 
-    public function destroy(){
+    public function destroy($id){
 
+        $consulta = Consulta::find($id);
+        $consulta->delete();
+
+        return Redirect::to('/consulta');
     }
 
 }

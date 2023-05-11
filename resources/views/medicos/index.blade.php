@@ -1,12 +1,13 @@
 <style scoped>
-    .table{
-
-    }
-    
     .btn {
         float: right;
         background-color: #0d6efd !important;
         margin-bottom: 10px;
+    }
+
+    .btn-danger {
+        float: left !important;
+        background-color: red !important;
     }
 </style>
 
@@ -31,6 +32,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Medico</th>                        
+                                <th scope="col">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +44,14 @@
                                             </td>
                                             <td>
                                                 {{ $medico->nome }}
+                                            </td>
+                                            <td>
+                                                <form method="POST" action="{{ route('medico.destroy', $medico->id) }}" accept-charset="UTF-8">
+                                                    {!! csrf_field() !!}
+                                                    {!! method_field('DELETE') !!}
+                                                    <button type="submit" onclick="return confirm('Tem certeza que quer deletar?')"
+                                                        class="btn btn-danger bi bi-trash"></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

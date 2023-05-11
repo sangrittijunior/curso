@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/consulta', 'App\Http\Controllers\ConsultaController')->middleware(['auth', 'verified']);
 Route::resource('/medico', 'App\Http\Controllers\MedicoController')->middleware(['auth', 'verified']);
+Route::resource('/paciente', 'App\Http\Controllers\PacienteController')->middleware(['auth', 'verified']);
 
 Route::get('/', function () {
     return view('welcome');
